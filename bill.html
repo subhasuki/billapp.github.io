@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Billing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="in-form">
+
+            <br><h1>Happy Mart</h1><br><br>
+    
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" name="myform">
+                
+                        <label>CustomerID</label><label class="validation-error hide" id="pnameValidationError">This field is required.</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="ccode" id="ccode"  value="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required /><br><br>
+                    
+                
+                        <label for="cname">CustomerName</label>
+                        <input type="text" name="cname" id="cname" onKeyPress="return numvalidate(event);" required /><br><br>
+                    
+                        
+                
+                        <label name="pcode">ProductCode</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="pcode" id="pcode"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required /><br><br>
+                    
+                    
+                        <label name="pname">ProductName</label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input list="productname" name="pname" id="pname">
+                        <datalist id="productname">  
+                            <option value="Carrot">  
+                            <option value="Broccoli">  
+                            <option value="Asparagus">   
+                            <option value="Cauliflower">   
+                            <option value="Corn">   
+                            <option value="Cucumber">   
+                            <option value="Eggplant">   
+                            <option value="Green pepper">   
+                            <option value="Red chili">   
+                            <option value="Spinach">   
+                            <option value="Sweet potato">  
+                            <option value="Tomato">  
+                            <option value="Turnip">  
+                            <option value="Potato">   
+                            <option value="Spine gourd">   
+                            <option value="Radish pods">   
+                            <option value="Pumpkin">   
+                            <option value="Mint leaves">   
+                            <option value="Peas">   
+                            <option value="Onion">   
+                            <option value="Mushroom">   
+                            <option value="lemon">   
+                            <option value="Green chilli">  
+                            <option value="Fresh ginger">  
+                            <option value="Garlic">  
+                            <option value="Coconut">   
+                            <option value="Beetroot">  
+                                
+                           <option value="Bengal Gram">   
+                            <option value="Green Gram">   
+                            <option value="Red Gram">   
+                            <option value="Black Gram">   
+                            <option value="Poppy seeds">   
+                            <option value="Coriander seeds">  
+                            <option value="Mustard seeds">  
+                            <option value="Cumin seeds">  
+                            <option value="Urad dal">   
+                            <option value="Ground Nuts">   
+                            <option value="Turmeric">   
+                            <option value="Fenugreek Seeds">   
+                            <option value="Sago">   
+                            <option value="Millet">   
+                            <option value="Maize">   
+                            <option value="Salt">   
+                            <option value="oil">   
+                            <option value="Kidney Beans">  
+                            <option value="Biryani Rice">  
+                            <option value="Raw rice">  
+                            <option value="Sugar">   
+                            <option value="Jaggery">       
+                            
+                            <option value="Cumin seeds">  
+                            <option value="Milk Powde">   
+                            <option value="Green tea">   
+                            <option value="Mustard seeds">   
+                            <option value="Fenugreek Seeds">   
+                            <option value="Baking soda">   
+                            <option value="Cardamom">   
+                            <option value="Dry ginger">   
+                            <option value="Nutmeg">   
+                            <option value="Vinegar">   
+                            <option value="Noodles">  
+                            <option value="Dish washing soap">  
+                            <option value="Shampoo">  
+                            <option value="Conditioner">   
+                            <option value="Soap">       
+                            
+                                
+                        </datalist>  <br><br> 
+                    
+                
+                        <label name="quan">Quantity</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="quan" id="quan" oninput="mulqun()"  onkeypress="return pointfun(event)" required /><br><br>
+                    
+                
+                        <label name="punit">Per_Unit_Price</label>&nbsp;
+                        <input type="text" name="punit" id="punit" oninput="mulqun()" onkeypress="return pointfun(event)" required /><br><br>
+                    
+                
+                        <label name="amount">Amount</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="amount" id="amount"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" required /><br><br>
+                    
+                    <!-- <div class="form-action-buttons"> -->
+                        <br> <input type="submit" id="addstyle" value="Add">
+                    <!-- </div> -->
+                </form>
+        </div>
+                <div class="tbl-form"><br><br><br>
+                <table class="list table-scroll small-first-col" id="productList">
+                    <thead>
+                        <tr>
+                            <th>ProductCode</th>
+                            <th>ProductName</th>
+                            <th>Quantity</th>
+                            <th>Unitprice</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="protbody" class="body-half-screen">
+
+                    </tbody>
+                </table>
+
+                        <table  id="totlist" style="border:1px solid;">
+                            <thead>
+                                <tr>
+                                    <th>CustomerID</th>
+                                    <th>CustomerName</th>
+                                    <!-- <th>Total Product</th> -->
+                                    <th>Net Amount</th>
+                                    <th>GST Amount</th>
+                                    <th>Total-Amount</th>
+                                </tr>
+                                <tr>
+                                    <td id="cccode"></td>
+                                    <td id="ccname"></td>
+                                    <!-- <td id="rowscount"></td> -->
+                                    <td id="val"></td>
+                                    <td id="gst-amount"></td>
+                                    <td id="total-amount"></td>
+
+                                </tr>
+                            </thead>
+                            <tbody id="protbody" class="body-half-screen">
+        
+                            </tbody>
+                        </table><br><br><br><br>
+                        <input id="add_tot1"  value="Print" type="button">
+    
+                </div>
+                </div>
+          
+    <script src="billscript.js"></script>
+
+</body>
+
+</html>
